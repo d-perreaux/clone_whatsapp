@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         fontFamily: "OpenSans",
-        primaryColor: Color(0xFF075E54)
+        primaryColor: const Color(0xFF075E54),
+        secondaryHeaderColor: Color(0XFF128C7E),
+
       ),
       home: Homescreen()
     );
