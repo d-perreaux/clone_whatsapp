@@ -12,7 +12,7 @@ class CustomCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-          context, MaterialPageRoute(builder: (context) => IndividualPage())
+          context, MaterialPageRoute(builder: (context) => IndividualPage(chatModel: chatModel,))
         )  ;
       },
       child: Column(
@@ -23,8 +23,8 @@ class CustomCard extends StatelessWidget {
               child: SvgPicture.asset(
               chatModel.isGroup ? "assets/groups.svg" : "assets/person.svg" ,
                 color: Colors.white,
-                height: 37,
-                width: 37,
+                height: 36,
+                width: 36,
               ),
               backgroundColor: Colors.blueGrey,
             ),
