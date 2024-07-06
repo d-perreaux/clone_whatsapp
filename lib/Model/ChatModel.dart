@@ -10,6 +10,6 @@ class ChatModel {
     required this.icon,
     required this.isGroup,
     required this.time,
-    required this.currentMessage
+    required this.currentMessage,
   });
 }
