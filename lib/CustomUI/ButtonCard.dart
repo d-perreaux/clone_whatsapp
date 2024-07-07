@@ -9,9 +9,7 @@ class ButtonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: ListTile(
+    return  ListTile(
         leading: CircleAvatar(
           radius: 23,
           child: Icon(icon,
@@ -26,7 +24,7 @@ class ButtonCard extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-      ),
+
     );
   }
 }

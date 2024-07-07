@@ -1,4 +1,5 @@
 import 'package:chatapp/Screens/Homescreen.dart';
+import 'package:chatapp/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         secondaryHeaderColor: Color(0XFF128C7E),
 
       ),
-      home: Homescreen()
+      home: const LoginScreen()
     );
   }
 }

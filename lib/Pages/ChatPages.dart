@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:chatapp/Model/ChatModel.dart';
 
     class ChatPage extends StatefulWidget {
-      const ChatPage({super.key});
+      const ChatPage({ Key? key, required this.chatModels}) :super(key : key);
+      final List<ChatModel> chatModels;
     
       @override
       State<ChatPage> createState() => _ChatPageState();
@@ -12,43 +13,6 @@ import 'package:chatapp/Model/ChatModel.dart';
     
     class _ChatPageState extends State<ChatPage> {
 
-      List<ChatModel> chats = [
-        ChatModel(
-          name: "Dev Stack",
-          isGroup: false,
-          currentMessage: "Hi everyone",
-          time: "4:00",
-          icon: "person.svg"
-        ),
-        ChatModel(
-            name: "Kishor",
-            isGroup: false,
-            currentMessage: "Hi kiki",
-            time: "10:00",
-            icon: "person.svg"
-        ),
-        ChatModel(
-            name: "Collins",
-            isGroup: false,
-            currentMessage: "Hi dev Stack",
-            time: "10:00",
-            icon: "person.svg"
-        ),
-        ChatModel(
-            name: "Dev Server Chat",
-            isGroup: true,
-            currentMessage: "Hi everyone",
-            time: "10:00",
-            icon: "groups.svg"
-        ),
-        ChatModel(
-            name: "Balram Friends Stack",
-            isGroup: true,
-            currentMessage: "Hi everyone",
-            time: "8:00",
-            icon: "groups.svg"
-        ),
-      ];
       @override
       Widget build(BuildContext context) {
         return Scaffold(
@@ -59,9 +23,9 @@ import 'package:chatapp/Model/ChatModel.dart';
             child: Icon(Icons.chat),
           ),
           body:ListView.builder(
-              itemCount: chats.length,
+              itemCount: widget.chatModels.length,
               itemBuilder: (context, index) => CustomCard(
-                  chatModel: chats[index],))
+                  chatModel: widget.chatModels[index],))
         );
       }
     }

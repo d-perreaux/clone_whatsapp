@@ -1,5 +1,6 @@
 import 'package:chatapp/CustomUI/ButtonCard.dart';
 import 'package:chatapp/CustomUI/ContactCard.dart';
+import 'package:chatapp/Model/ChatModel.dart';
 import 'package:chatapp/Model/ContactModel.dart';
 import 'package:flutter/material.dart';
 
@@ -14,12 +15,52 @@ class _SelectContactState extends State<SelectContact> {
   @override
   Widget build(BuildContext context) {
 
-    List<ContactModel> contacts = [
-      ContactModel(name: "Camarade Antoine", status: "A full stack developer"),
-      ContactModel(name: "Camarade Thibault", status: "A full stack developer"),
-      ContactModel(name: "Camarade Selin", status: "A full stack developer"),
-      ContactModel(name: "Camarade Eliseo", status: "A full stack developer"),
-      ContactModel(name: "Camarade Jérémie", status: "A full stack chef de projet"),
+    List<ChatModel> contacts = [
+      ChatModel(
+          name: "Dev Stack",
+          isGroup: false,
+          currentMessage: "Hi everyone",
+          time: "4:00",
+          icon: "person.svg",
+          status: "A full stack developer",
+          id: 1
+      ),
+      ChatModel(
+          name: "Kishor",
+          isGroup: false,
+          currentMessage: "Hi kiki",
+          time: "10:00",
+          icon: "person.svg",
+          status: "A full stack developer",
+          id: 2
+      ),
+      ChatModel(
+          name: "Collins",
+          isGroup: false,
+          currentMessage: "Hi dev Stack",
+          time: "10:00",
+          icon: "person.svg",
+          status: "A full stack developer",
+          id: 3
+      ),
+      ChatModel(
+          name: "Dev Server Chat",
+          isGroup: true,
+          currentMessage: "Hi everyone",
+          time: "10:00",
+          icon: "groups.svg",
+          status: "A full stack developer",
+          id: 4
+      ),
+      ChatModel(
+          name: "Balram Friends Stack",
+          isGroup: true,
+          currentMessage: "Hi everyone",
+          time: "8:00",
+          icon: "groups.svg",
+          status: "A full stack chef de projet",
+          id: 5
+      ),
     ];
 
     return Scaffold(

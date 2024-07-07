@@ -15,6 +15,7 @@ class IndividualPage extends StatefulWidget {
 
 class _IndividualPageState extends State<IndividualPage> {
   IO.Socket? socket;
+  bool sendButton = false;
 
   @override
   void initState() {
@@ -150,6 +151,17 @@ class _IndividualPageState extends State<IndividualPage> {
                                 keyboardType: TextInputType.multiline,
                                 maxLines : 5,
                                 minLines: 1,
+                                onChanged: (value) {
+                                  if(value.isNotEmpty) {
+                                    setState(() {
+                                      sendButton = true;
+                                    });
+                                  } else {
+                                    setState(() {
+                                      sendButton = false;
+                                    });
+                                  }
+                                },
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: "Type a message",
@@ -172,9 +184,9 @@ class _IndividualPageState extends State<IndividualPage> {
                           backgroundColor: Color(0XFF128C7E),
                           radius: 25,
                           child: IconButton(
-                            onPressed: () {}, icon: Icon(
-                            Icons.mic,
-                            color: Colors.white,),),
+                            icon: Icon(
+                            sendButton ? Icons.send : Icons.mic,
+                            color: Colors.white,), onPressed: () {  },),
                         ),
                       ),
                     ],

@@ -1,10 +1,11 @@
+import 'package:chatapp/Model/ChatModel.dart';
 import 'package:chatapp/Model/ContactModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ContactCard extends StatelessWidget {
   const ContactCard({ Key? key, required this.contact}) :super(key : key);
-  final ContactModel contact;
+  final ChatModel contact;
 
   @override
   Widget build(BuildContext context) {
