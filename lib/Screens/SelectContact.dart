@@ -1,7 +1,6 @@
 import 'package:chatapp/CustomUI/ButtonCard.dart';
 import 'package:chatapp/CustomUI/ContactCard.dart';
 import 'package:chatapp/Model/ChatModel.dart';
-import 'package:chatapp/Model/ContactModel.dart';
 import 'package:flutter/material.dart';
 
 class SelectContact extends StatefulWidget {

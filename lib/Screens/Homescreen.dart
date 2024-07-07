@@ -3,9 +3,9 @@ import 'package:chatapp/Pages/ChatPages.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({ Key? key, required this.chatModels}) :super(key : key);
+  const Homescreen({ Key? key, required this.chatModels, required this.sourceChat}) :super(key : key);
   final List<ChatModel> chatModels;
-
+  final ChatModel sourceChat;
 
   @override
   State<Homescreen> createState() => _HomescreenState();
@@ -63,7 +63,7 @@ class _HomescreenState extends State<Homescreen> with SingleTickerProviderStateM
         controller: _controller,
         children: [
           Text("camera"),
-          ChatPage(chatModels: widget.chatModels,),
+          ChatPage(chatModels: widget.chatModels, sourceChat: widget.sourceChat,),
           Text("status"),
           Text("calls")
         ],

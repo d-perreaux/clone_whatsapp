@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:chatapp/CustomUI/OwnMessageCard.dart';
 import 'package:chatapp/CustomUI/ReplyCardMessage.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +8,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class IndividualPage extends StatefulWidget {
-  const IndividualPage({ Key? key, required this.chatModel}) :super(key : key);
+  const IndividualPage({ Key? key, required this.chatModel, required this.sourceChat}) :super(key : key);
   final ChatModel chatModel;
+  final ChatModel sourceChat;
 
   @override
   State<IndividualPage> createState() => _IndividualPageState();
@@ -16,6 +19,8 @@ class IndividualPage extends StatefulWidget {
 class _IndividualPageState extends State<IndividualPage> {
   IO.Socket? socket;
   bool sendButton = false;
+
+  TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -29,10 +34,18 @@ class _IndividualPageState extends State<IndividualPage> {
       "autoConnect":false,
     });
     socket?.connect();
-    print(socket?.connected);
-    socket?.onConnect((data) => print("Connected"));
-    socket?.emit("/test", "hello world");
+    socket?.onConnect((data) {
+      print("Preuve");
+      socket?.on("message", (data) {
+        print( data);
+      });
+    });
+    socket?.emit("signing", widget.sourceChat.id);
+  }
 
+  void sendMessage(String message, int sourceId, int targetId) {
+    socket?.emit("message",
+            {"message": message, "sourceId": sourceId, "targetId": targetId});
   }
 
   @override
@@ -147,6 +160,7 @@ class _IndividualPageState extends State<IndividualPage> {
                               borderRadius: BorderRadius.circular(25),
                             ),
                               child: TextFormField(
+                                controller: _controller,
                                 textAlignVertical: TextAlignVertical.center,
                                 keyboardType: TextInputType.multiline,
                                 maxLines : 5,
@@ -186,7 +200,12 @@ class _IndividualPageState extends State<IndividualPage> {
                           child: IconButton(
                             icon: Icon(
                             sendButton ? Icons.send : Icons.mic,
-                            color: Colors.white,), onPressed: () {  },),
+                            color: Colors.white,), onPressed: () { 
+                              if(sendButton) {
+                                sendMessage(_controller.text, widget.sourceChat.id, widget.chatModel.id);
+                                _controller.clear();
+                              }
+                          },),
                         ),
                       ),
                     ],

@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard({ Key? key, required this.chatModel}) :super(key : key);
+  const CustomCard({ Key? key, required this.chatModel, required this.sourceChat}) :super(key : key);
   final ChatModel chatModel;
+  final ChatModel sourceChat;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(
-          context, MaterialPageRoute(builder: (context) => IndividualPage(chatModel: chatModel,))
+          context, MaterialPageRoute(builder: (context) => IndividualPage(
+          chatModel: chatModel,
+        sourceChat: sourceChat,))
         )  ;
       },
       child: Column(

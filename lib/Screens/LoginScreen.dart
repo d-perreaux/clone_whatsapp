@@ -1,6 +1,5 @@
 import 'package:chatapp/CustomUI/ButtonCard.dart';
 import 'package:chatapp/Model/ChatModel.dart';
-import 'package:chatapp/Model/ContactModel.dart';
 import 'package:chatapp/Screens/Homescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -56,8 +55,13 @@ class _LoginScreenState extends State<LoginScreen> {
               icon: Icons.person,
             ),
               onTap: () {
-                sourceContact = contacts.removeAt(index);
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (builder) => Homescreen(chatModels: contacts)));
+                ChatModel sourceContact = contacts.removeAt(index);
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(
+                    builder: (builder) =>
+                        Homescreen(
+                            chatModels: contacts,
+                            sourceChat: sourceContact,)));
               },
 
             )
