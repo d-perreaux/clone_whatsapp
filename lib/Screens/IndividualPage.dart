@@ -3,6 +3,7 @@ import 'package:chatapp/CustomUI/ReplyCardMessage.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/Model/ChatModel.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class IndividualPage extends StatefulWidget {
   const IndividualPage({ Key? key, required this.chatModel}) :super(key : key);
@@ -13,6 +14,26 @@ class IndividualPage extends StatefulWidget {
 }
 
 class _IndividualPageState extends State<IndividualPage> {
+  IO.Socket? socket;
+
+  @override
+  void initState() {
+    super.initState();
+    connect();
+  }
+
+  void connect() {
+    socket = IO.io("http://192.168.1.21:5000", <String, dynamic>{
+      "transports":["websocket"],
+      "autoConnect":false,
+    });
+    socket?.connect();
+    print(socket?.connected);
+    socket?.onConnect((data) => print("Connected"));
+    socket?.emit("/test", "hello world");
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
