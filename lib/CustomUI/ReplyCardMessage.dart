@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ReplyMessageCard extends StatelessWidget {
-  const ReplyMessageCard({super.key});
+  const ReplyMessageCard({ Key? key, required this.message}) :super(key : key);
+  final String message;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ReplyMessageCard extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 10, right: 60, top: 5, bottom: 20),
-                child: Text("SHUT YOU FUCK UP ",
+                child: Text(message,
                   style: TextStyle(
                     fontSize: 16,
                   ),),
